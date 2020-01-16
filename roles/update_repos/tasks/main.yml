@@ -1,0 +1,48 @@
+---
+   - name: Add kubernetes repo
+     yum_repository:
+      name: kubernetes_repo
+      description: Kubernetes
+      baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+      enabled: yes
+      gpgcheck: yes
+      repo_gpgcheck: yes
+      gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+     when: ansible_distribution == "CentOS" 
+     
+   - name: Add Docker repository on Centos
+     yum_repository:
+      name: Docker_repo
+      description: docker
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+      enabled: yes
+      gpgcheck: no
+     when: ansible_distribution == "CentOS"
+
+
+
+
+   - name: add Kubernetes apt-key for APT repository
+     apt_key:
+       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+       state: present
+     when: ansible_distribution == "Ubuntu"
+
+   - name: add Kubernetes APT repository
+     apt_repository:
+      repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: 'kubernetes' 
+     when: ansible_distribution == "Ubuntu"
+
+   - name: Add Docker GPG apt Key in Ubuntu
+     apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+     when: ansible_distribution == "Ubuntu"
+
+   - name: Add Docker Repository in Ubuntu
+     apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+     when: ansible_distribution == "Ubuntu"

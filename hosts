@@ -1,0 +1,25 @@
+master_a ansible_host=54.38.189.194 ansible_connecion=ssh ansible_user=root #ansible_ssh_private_key_file=/root/.ssh/id_rsa
+master_j ansible_host=167.114.2.104 ansible_connecion=ssh ansible_user=root #ansible_ssh_private_key_file=/root/.ssh/id_rsa
+kube-01  ansible_host=51.161.8.73 ansible_connecion=ssh ansible_user=root #ansible_ssh_private_key_file=/root/.ssh/id_rsa
+test01   ansible_host=51.91.79.209 ansible_connecion=ssh ansible_user=root #ansible_ssh_private_key_file=/root/.ssh/id_rsa
+
+[prod]
+master_a
+master_j
+kube-01
+
+[test]
+test01
+
+[kubernetes]
+kube-01
+master_a
+
+[jenkins]
+master_j
+
+[rboard]
+master_j
+
+[ansible]
+master_j

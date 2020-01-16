@@ -1,0 +1,10 @@
+---
+
+   - name: Clone Ansible GitHub repo to master_a
+     command: git clone https://github.com/full-ci-cd/ansible_repo.git /repos/ansible/
+
+   - name: Clone Docker GitHub repo to master_a
+     command: git clone https://github.com/full-ci-cd/docker_repo.git /repos/docker/
+
+   - name: Change owner of repos
+     command: chown -R technical:technical /repos

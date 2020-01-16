@@ -1,0 +1,18 @@
+---
+- hosts: test01
+  roles:
+   - ping
+   - create_technical_user
+   - update_repos
+#   - configure_env
+
+- hosts: test01
+  become: yes
+  become_user: technical
+  roles:
+   - configure_env
+
+#- hosts: master_a
+#  roles:
+#   - clone_github_repo
+
