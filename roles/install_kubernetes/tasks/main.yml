@@ -5,3 +5,10 @@
      yum:
        name: [kubectl,kubeadm, docker-ce]
        state: present
+
+
+#   - name: Starting and Enabling the Docker service - CentOS
+#     service:
+#       name: kubectl
+#       state: started
+#       enabled: yes
