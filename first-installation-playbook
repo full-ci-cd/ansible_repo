@@ -1,14 +1,16 @@
 ---
 
 - hosts: testlocal
+  name: "            STARTING GENERAL CONFIGURATION"
+  gather_facts: no
   roles:
    - ping
-#   - update_packages
+   - update_packages
    - create_technical_user
-#   - update_repos
-#   - configure_env
+   - update_repos
 
 - hosts: testlocal
+  name: "           STARTING USER'S ENVIRONMENT CONFIGURATION"
   become: yes
   become_user: technical
   roles:
