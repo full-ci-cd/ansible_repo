@@ -1,3 +1,1 @@
----
-host_file: "127.0.0.1 localhost\n54.38.189.194 master_a\n167.114.2.104 master_j\n51.161.8.73 kube-01\n51.91.79.209 test01\n"
 

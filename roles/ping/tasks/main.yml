@@ -1,4 +1,4 @@
 ---
 
-   - name: Check connectivity
+   - name: Check connectivity to hosts
      ping: 

@@ -1,6 +1,6 @@
 ---
 
-   - name: install system updates for centos systems
+   - name: Install package updates on CentOS hosts
      yum:
        name=*
        state=latest
@@ -8,7 +8,7 @@
      when: ansible_distribution == "CentOS"
 
 
-   - name: install system updates for ubuntu systems
+   - name: Install package updates on Ubuntu hosts
      apt:
        upgrade=dist
        update_cache=yes

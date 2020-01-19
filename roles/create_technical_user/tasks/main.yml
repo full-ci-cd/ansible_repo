@@ -36,15 +36,3 @@
       dest: /etc/sudoers.d/{{ tech_user }} 
      when: ansible_distribution == "Ubuntu"
 
-#   - name: create sudoers file on Ubuntu hosts
-#     file:
-#       path: /etc/sudoers.d/{{ tech_user }}
-#       state: touch
-#     when: ansible_distribution == "Ubuntu"
-
-#   - name: Add technical user to the sudoers - Ubuntu
-#     lineinfile:
-#        path: /etc/sudoers.d/technical
-#        line: "technical  ALL=(ALL)  NOPASSWD: ALL"
-#     when: ansible_distribution == "Ubuntu"
-

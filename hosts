@@ -3,10 +3,6 @@ master_j ansible_host=167.114.2.104 ansible_connecion=ssh ansible_user=root  ans
 kube-01  ansible_host=51.161.8.73 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
 test01   ansible_host=51.91.79.209 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
 
-testlocalc   ansible_host=192.168.0.51 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
-testlocalu   ansible_host=192.168.0.52 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
-testlocalm   ansible_host=192.168.0.50 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
-
 
 [prod]
 master_a
@@ -16,10 +12,6 @@ kube-01
 [test]
 test01
 
-[testlocal]
-testlocalc
-testlocalu
-testlocalm
 
 [kubernetes]
 kube-01

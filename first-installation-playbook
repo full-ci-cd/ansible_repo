@@ -1,22 +1,23 @@
 ---
 
-- hosts: testlocal
-  name: "            STARTING GENERAL CONFIGURATION"
-  gather_facts: no
+- hosts: prod
+  name: "STARTING GENERAL CONFIGURATION"
+  gather_facts: yes
   roles:
    - ping
    - update_packages
    - create_technical_user
    - update_repos
 
-- hosts: testlocal
-  name: "           STARTING USER'S ENVIRONMENT CONFIGURATION"
+- hosts: prod
+  name: " STARTING USER'S ENVIRONMENT CONFIGURATION"
+  gather_facts: yes
   become: yes
   become_user: technical
   roles:
    - configure_env
 
-#- hosts: master_a
-#  roles:
-#   - clone_github_repo
+- hosts: master_a
+  roles:
+   - clone_github_repo
 
