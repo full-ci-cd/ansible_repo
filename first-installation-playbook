@@ -1,12 +1,14 @@
 ---
-- hosts: test01
+
+- hosts: testlocal
   roles:
    - ping
+#   - update_packages
    - create_technical_user
-   - update_repos
+#   - update_repos
 #   - configure_env
 
-- hosts: test01
+- hosts: testlocal
   become: yes
   become_user: technical
   roles:

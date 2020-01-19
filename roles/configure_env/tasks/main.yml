@@ -1,6 +1,8 @@
 ---
       
    - name: Update /etc/hosts file
+     become: yes
+     become_user: root
      copy:
        content: "{{ host_file }}"
        dest: /etc/hosts

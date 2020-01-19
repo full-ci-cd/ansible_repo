@@ -2,7 +2,7 @@
 
    - name: Create technical user on Centos hosts
      user:
-        name: technical
+        name: "{{ tech_user }}"
         password: '$6$rvwfqIq3PjD4y7d$yAUUaik.HtROOXCcNQgJTiP42p1lZQZcwMIpzj7NCtrWMZCj87WxN2kIn4UKH0V0FCD2npSHRA83e0StPJyd0.'
         groups: wheel
         state: present
@@ -14,7 +14,7 @@
      
    - name: Create technical user on Ubuntu hosts
      user:
-        name: technical
+        name: "{{ tech_user }}"
         password: '$6$rvwfqIq3PjD4y7d$yAUUaik.HtROOXCcNQgJTiP42p1lZQZcwMIpzj7NCtrWMZCj87WxN2kIn4UKH0V0FCD2npSHRA83e0StPJyd0.'
         groups: sudo
         state: present
@@ -24,16 +24,27 @@
         home: /home/technical  # Defaults to /home/<username>
      when: ansible_distribution == "Ubuntu"
 
-   - name: Add technical user to the sudoers - Centos
+   - name: Add technical user to sudoers - Centos
      lineinfile:    
         path: /etc/sudoers
-        line: "technical  ALL=(ALL)  NOPASSWD: ALL"
+        line: "{{ tech_user }}  ALL=(ALL)  NOPASSWD: ALL"
      when: ansible_distribution == "CentOS"
 
-
-   - name: Add technical user to the sudoers - Ubuntu
-     lineinfile:
-        path: /etc/sudoers.d/technical
-        line: "technical  ALL=(ALL)  NOPASSWD: ALL"
+   - name: Add technical user to sudoers - Ubuntu
+     copy:
+      content: "{{tech_user }} ALL=(ALL)  NOPASSWD: ALL"
+      dest: /etc/sudoers.d/{{ tech_user }} 
      when: ansible_distribution == "Ubuntu"
+
+#   - name: create sudoers file on Ubuntu hosts
+#     file:
+#       path: /etc/sudoers.d/{{ tech_user }}
+#       state: touch
+#     when: ansible_distribution == "Ubuntu"
+
+#   - name: Add technical user to the sudoers - Ubuntu
+#     lineinfile:
+#        path: /etc/sudoers.d/technical
+#        line: "technical  ALL=(ALL)  NOPASSWD: ALL"
+#     when: ansible_distribution == "Ubuntu"
 

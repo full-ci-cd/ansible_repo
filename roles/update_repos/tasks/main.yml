@@ -10,16 +10,6 @@
       gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
      when: ansible_distribution == "CentOS" 
      
-   - name: Add Docker repository on Centos
-     yum_repository:
-      name: Docker_repo
-      description: docker
-      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-      enabled: yes
-      gpgcheck: no
-     when: ansible_distribution == "CentOS"
-
-
 
 
    - name: add Kubernetes apt-key for APT repository
