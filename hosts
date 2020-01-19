@@ -12,6 +12,9 @@ kube-01
 [test]
 test01
 
+[docker]
+master_a
+kube-01
 
 [kubernetes]
 kube-01

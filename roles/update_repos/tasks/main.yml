@@ -1,5 +1,5 @@
 ---
-   - name: Add kubernetes repo in CentOS hosts
+   - name: Add kubernetes repository in CentOS hosts
      yum_repository:
       name: kubernetes_repo
       description: Kubernetes
@@ -18,6 +18,7 @@
        state: present
      when: ansible_distribution == "Ubuntu"
 
+
    - name: Add Kubernetes repository on Ubuntu
      apt_repository:
       repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
@@ -25,13 +26,24 @@
       filename: 'kubernetes' 
      when: ansible_distribution == "Ubuntu"
 
+
+
+#***********************
+#DOCKER
+#***********************
+
+   - name: Add Docker repository on CentOS
+     shell: |
+       yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+     when: ansible_distribution == "CentOS"
+
    - name: Add Docker apt-key to repository on Ubuntu
      apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
      when: ansible_distribution == "Ubuntu"
 
-   - name: Add Docker repository in Ubuntu
+   - name: Add Docker repository on Ubuntu
      apt_repository:
         repo: deb https://download.docker.com/linux/ubuntu bionic stable
         state: present

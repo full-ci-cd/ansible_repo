@@ -1,16 +1,15 @@
 ---
 
-   - name: Clone Ansible GitHub repo to master_a
+   - name: Clone Ansible remote repository to master_a
      command: git clone https://github.com/full-ci-cd/ansible_repo.git "{{ repo_path }}"/ansible/
 
-   - name: Clone Docker GitHub repo to master_a
+   - name: Clone Docker remote repository to master_a
      command: git clone https://github.com/full-ci-cd/docker_repo.git  "{{ repo_path }}"/docker/
 
-   - name: Change owner of downloadres repositories
+   - name: Change owner of downloaded repositories
      file:
        path: "{{ repo_path }}"
        state: directory
        recurse: yes
        owner: "{{ tech_user }}"
        group: "{{ tech_user }}"
-#  command: chown -R technical:technical /repos

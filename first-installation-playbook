@@ -21,3 +21,14 @@
   roles:
    - clone_github_repo
 
+- hosts: docker
+  name: "DOCKER INSTALLATION"
+  gather_facts: yes
+  roles:
+   - install_docker
+
+- hosts: kubernetes
+  name: "KUBERNETES INSTALLATION"
+  gather_facts: yes
+  roles:
+   - install_kubernetes
