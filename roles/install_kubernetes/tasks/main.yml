@@ -1,41 +1,36 @@
 ---
 
-   - name: Install Kubernetes packages on CentOs
+   - name: Install kubernetes-cni packages
      become: yes                                 #allows to use sudo when installing as non-root user
      yum:
-       name: [kubectl,kubeadm]
+       name: kubernetes-cni-0.6.0
        state: present
      when: ansible_distribution == "CentOS"
 
-   - name: Starting and Enabling the Kubelet service - CentOS
-     service:
-       name: kubelet
-       state: started
-       enabled: yes
-     when: ansible_distribution == "CentOS"
 
- 
+   - name: Install Kubernetes packages on CentOS
+     become: yes                                 #allows to use sudo when installing as non-root user
+     yum:
+       name: [kubectl,kubelet,kubeadm]
+       state: present
+     when: ansible_distribution == "CentOS"
 
 
    - name: Install Kubernetes packages on Ubuntu
      become: yes                                 #allows to use sudo when installing as non-root user
-     yum:
-       name: [kubectl,kubeadm]
+     apt:
+       name: [kubectl,kubelet,kubeadm]
        state: present
      when: ansible_distribution == "Ubuntu"
 
+   - name: Reload systemd deamon
+     command: systemctl daemon-reload
 
-   - name: Starting and Enabling the Kubelet service - Ubuntu
+
+   - name: Starting and Enabling the Kubelet service 
      service:
-       name: kubelet
+       name: kubelet.service
        state: started
        enabled: yes
-     when: ansible_distribution == "Ubuntu"
+#     when: ansible_distribution == "CentOS"
 
-
-
-#   - name: Starting and Enabling the Docker service - CentOS
-#     service:
-#       name: kubectl
-#       state: started
-#       enabled: yes
