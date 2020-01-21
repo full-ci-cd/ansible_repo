@@ -17,19 +17,22 @@
   roles:
    - configure_env
 
-- hosts: master_a
-  name: "CLONING REPOSITORY"
-  roles:
-   - clone_github_repo
+#- hosts: master_a
+#  name: "CLONING REPOSITORY"
+#  roles:
+#   - clone_github_repo
 
 - hosts: docker
   name: "DOCKER INSTALLATION"
-  gather_facts: yes
   roles:
    - install_docker
 
 - hosts: kubernetes
   name: "KUBERNETES INSTALLATION"
-  gather_facts: yes
   roles:
    - install_kubernetes
+
+- hosts: ansible
+  name: "ANSIBLE INSTALLATION"
+  roles:
+   - install_ansible
