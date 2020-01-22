@@ -1,27 +1,36 @@
 ---
 
-   - name: Install kubernetes-cni packages
+   - name: Install kubernetes-cni on master Centos
      become: yes                                 #allows to use sudo when installing as non-root user
      yum:
        name: kubernetes-cni-0.6.0
        state: present
-     when: ansible_distribution == "CentOS"
+     when: ansible_distribution == "CentOS" and ansible.hostname == "{{kubernetes_master }}"
 
 
-   - name: Install Kubernetes packages on CentOS
+   - name: Install Kubernetes packages on master CentOS
      become: yes                                 #allows to use sudo when installing as non-root user
      yum:
-       name: [kubectl,kubelet,kubeadm]
+       name: [kubectl,kubeadm,kubelet]
        state: present
-     when: ansible_distribution == "CentOS"
+     when: ansible_distribution == "CentOS" and ansible.hostname == "{{ kubernetes_master }}"
 
 
-   - name: Install Kubernetes packages on Ubuntu
+   - name: Install Kubernetes agent on node Centos
+     become: yes                                 #allows to use sudo when installing as non-root user
+     yum:
+       name: [kubelet]
+       state: present
+     when: ansible_distribution == "CentOS" and ansible.hostname != "{{ kubernetes_master }}"
+
+  
+   - name: Install Kubernetes agent on node Ubuntu
      become: yes                                 #allows to use sudo when installing as non-root user
      apt:
-       name: [kubectl,kubelet,kubeadm]
+       name: [kubelet]
        state: present
-     when: ansible_distribution == "Ubuntu"
+     when: ansible_distribution == "Ubuntu" ans ansible.hostname != "{{ kubernetes_master }}"
+
 
    - name: Reload systemd deamon
      command: systemctl daemon-reload
@@ -32,5 +41,3 @@
        name: kubelet.service
        state: started
        enabled: yes
-#     when: ansible_distribution == "CentOS"
-
