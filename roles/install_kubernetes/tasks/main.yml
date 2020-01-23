@@ -5,16 +5,24 @@
      yum:
        name: kubernetes-cni-0.6.0
        state: present
-     when: ansible_distribution == "CentOS" and ansible.hostname == "{{kubernetes_master }}"
-
-
-   - name: Install Kubernetes packages on master CentOS
-     become: yes                                 #allows to use sudo when installing as non-root user
-     yum:
-       name: [kubectl,kubeadm,kubelet]
-       state: present
      when: ansible_distribution == "CentOS" and ansible.hostname == "{{ kubernetes_master }}"
 
+
+   - name: Install main Kubernetes packages if master CentOS
+     become: yes                                 #allows to use sudo when installing as non-root user
+     yum:
+       name: [kubectl,kubeadm]
+       state: present
+     when: ansible_distribution == "CentOS" and ansible.hostname == "{{ kubernetes_master }}"
+     
+
+   - name: Install main Kubernetes packages if master Ubuntu
+     become: yes                                 #allows to use sudo when installing as non-root user
+     apt:
+       name: [kubectl,kubeadm]
+       state: present
+     when: ansible_distribution == "Ubuntu" and ansible.hostname == "{{ kubernetes_master }}"
+     
 
    - name: Install Kubernetes agent on node Centos
      become: yes                                 #allows to use sudo when installing as non-root user
