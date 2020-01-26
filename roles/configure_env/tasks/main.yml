@@ -1,11 +1,16 @@
 ---
-      
+   - name: check if .deockerenv exists
+     stat: 
+       path: /.dockerenv 
+     register: dockerenv
+
    - name: Update /etc/hosts file
      become: yes
      become_user: root
      copy:
        content: "{{ host_file }}"
        dest: /etc/hosts
+     when: dockerenv.stat.exists == False
     
    - name: Update aliases
      blockinfile:

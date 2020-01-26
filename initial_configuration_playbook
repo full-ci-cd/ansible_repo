@@ -17,11 +17,6 @@
   roles:
    - configure_env
 
-- hosts: master_a
-  name: "CLONING REPOSITORY"
-  roles:
-   - clone_github_repo
-
 - hosts: docker
   name: "DOCKER INSTALLATION"
   roles:
