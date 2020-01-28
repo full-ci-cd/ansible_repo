@@ -23,7 +23,7 @@
      when: ansible_distribution == "Ubuntu"
 
 
-   - name: Starting and Enabling the Docker service - CentOS
+   - name: Starting and Enabling the Docker service
      service:
        name: docker-ce
        state: started
