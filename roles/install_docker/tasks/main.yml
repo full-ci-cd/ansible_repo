@@ -10,7 +10,7 @@
    - name: Install Docker packages on Centos hosts
      become: yes                                 #allows to use sudo when installing as non-root user
      yum:
-       name: [docker-ce]
+       name: [docker-ce,docker-ce-cli,containerd.io]
        state: present
      when: ansible_distribution == "CentOS"
 
@@ -18,23 +18,14 @@
    - name: Install Docker packages on Ubuntu hosts
      become: yes                                 #allows to use sudo when installing as non-root user
      apt:
-       name: [docker-ce]
+       name: [docker-ce,docker-ce-cli,containerd.io]
        state: present
      when: ansible_distribution == "Ubuntu"
 
 
    - name: Starting and Enabling the Docker service - CentOS
      service:
-       name: docker
+       name: docker-ce
        state: started
        enabled: yes
-     when: ansible_distribution == "CentOS"
-
-
-   - name: Starting and Enabling the Docker service - Ubuntu
-     service:
-       name: docker
-       state: started
-       enabled: yes
-     when: ansible_distribution == "Ubuntu"
 
