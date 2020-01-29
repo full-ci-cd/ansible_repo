@@ -1,0 +1,27 @@
+master_a_przemek ansible_connection=docker
+master_j_przemek ansible_connection=docker
+kube-01_przemek ansible_connection=docker
+
+
+[prod]
+master_a_przemek
+master_j_przemek
+kube-01_przemek
+
+
+[docker]
+master_a_przemek
+kube-01_przemek
+
+[kubernetes]
+kube-01_przemek
+master_a_przemek
+
+[jenkins]
+master_j_przemek
+
+[rboard]
+master_j_przemek
+
+[ansible]
+master_j_przemek

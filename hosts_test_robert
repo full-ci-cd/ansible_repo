@@ -1,0 +1,27 @@
+master_a_robert ansible_connection=docker
+master_j_robert ansible_connection=docker
+kube-01_robert ansible_connection=docker
+
+
+[prod]
+master_a_robert
+master_j_robert
+kube-01_robert
+
+
+[docker]
+master_a_robert
+kube-01_robert
+
+[kubernetes]
+kube-01_robert
+master_a_robert
+
+[jenkins]
+master_j_robert
+
+[rboard]
+master_j_robert
+
+[ansible]
+master_j_robert
