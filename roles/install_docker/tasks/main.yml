@@ -25,7 +25,7 @@
 
    - name: Starting and Enabling the Docker service
      service:
-       name: docker-ce
+       name: docker
        state: started
        enabled: yes
 
