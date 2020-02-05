@@ -23,9 +23,9 @@
      when: ansible_distribution == "Ubuntu"
 
 
-   - name: Starting and Enabling the Docker service
+   - name:  Restart and Enable the Docker service
      service:
        name: docker
-       state: started
+       state: restarted
        enabled: yes
 
