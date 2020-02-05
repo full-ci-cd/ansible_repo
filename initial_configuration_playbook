@@ -19,15 +19,31 @@
 
 - hosts: docker
   name: "DOCKER INSTALLATION"
+  gather_facts: no
   roles:
    - install_docker
 
 - hosts: kubernetes
+  gather_facts: no
   name: "KUBERNETES INSTALLATION"
   roles:
    - install_kubernetes
 
 - hosts: ansible
   name: "ANSIBLE INSTALLATION"
+  gather_facts: no
   roles:
    - install_ansible
+
+- hosts: docker
+  name: "CONFIRM DOCKER IS RUNNING"
+  gather_facts: no
+  roles:
+   - docker_run_check
+
+- hosts: ansible
+  name: "CONFIRM ANSIBLE IS RUNNING "
+  gather_facts: no
+  roles:
+   - ansible_run_check
+

@@ -1,0 +1,8 @@
+---
+  - name: Confirm  ansible is is running
+    shell: ansible --version | head -1
+    register: ansible_status
+
+
+  - debug: 
+      msg:  "{{ ansible_status.stdout }}"
